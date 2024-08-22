@@ -21,11 +21,10 @@ const Chatbot = () => {
   const [objects, setObjects] = useState<Message[]>([]);
 
   async function createThread() {
-    const res = await fetch("../api/thread-api"); // Creating Thread
+    const res = await fetch("../api/thread-api", { cache: 'no-store' }); // Creating Thread
     const id = await res.json();
     setThreadID(id);
-    // await fetch(`../api/message-api/${id}`); //adding How can I help you in Bot
-    const result = await fetch(`../api/getMessages-api/${id}`); // getting initial messages
+    const result = await fetch(`../api/getMessages-api/${id}`, { cache: 'no-store' }); // getting initial messages
     const data: any[] = await result.json();
     const messages: Message[] = data.map((message) => ({
       role: message.role,
