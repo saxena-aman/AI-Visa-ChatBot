@@ -15,7 +15,6 @@ const Chatbot = () => {
   };
   const now = new Date();
   const [threadLoader, setThreadLoader] = useState(true);
-  let threadChecker=false;
   const [loading, setLoading] = useState(false);
   const [threadID, setThreadID] = useState("");
   const [objects, setObjects] = useState<Message[]>([]);
@@ -35,36 +34,10 @@ const Chatbot = () => {
     setObjects(messages);
   }
   useEffect(() => {
-    // setObjects([
-    //   {
-    //     role: "user",
-    //     created_at: 1724343200,
-    //     text: "give me russia immigration status",
-    //   },
-    //   {
-    //     role: "assistant",
-    //     created_at: 1724343202,
-    //     text: "<p>The current immigration status to Russia involves several steps:</p>\n\n<ol>\n  <li>Choose the type of visa you need (e.g., tourist, business, work).</li>\n  <li>Gather required documents (passport, application form, visa support/invitation).</li>\n  <li>Submit your application to a Russian consulate or visa center.</li>\n  <li>Pay the visa fee and wait for processing.</li>\n  <li>Register your visa upon arrival if staying longer than 7 days.</li>\n</ol>\n\n<p>For specific details, check the latest updates from the Russian consulate or official immigration websites.</p>",
-    //   },
-    //   {
-    //     role: "user",
-    //     created_at: 1724343224,
-    //     text: "what is for usa",
-    //   },
-    //   {
-    //     role: "assistant",
-    //     created_at: 1724343226,
-    //     text: "<p>The process for obtaining a U.S. visa involves the following steps:</p>\n\n<ol>\n  <li>Determine the type of visa you need (e.g., tourist, business, student, work).</li>\n  <li>Complete the online visa application form DS-160.</li>\n  <li>Pay the visa application fee.</li>\n  <li>Schedule an appointment for a visa interview at a U.S. Embassy or Consulate.</li>\n  <li>Gather necessary documents (passport, application confirmation, photo, support documents).</li>\n  <li>Attend the visa interview and await the decision.</li>\n</ol>\n\n<p>For specific details, check the latest updates from the U.S. Department of State’s website.</p>",
-    //   },
-    // ]);
-
     const checkAndCreateThread = async () => {
-      if (threadChecker===false) {
-        threadChecker=true;
         await createThread();
         console.log("The Thread ID has been set:", threadID);
         setThreadLoader(false);
-      }
     };
 
     checkAndCreateThread();
