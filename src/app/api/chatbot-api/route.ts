@@ -1,4 +1,5 @@
-export const dynamic = "force-static";
+// export const dynamic = "force-static";
+export const fetchCache = 'force-no-store';
 import OpenAI from "openai";
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
