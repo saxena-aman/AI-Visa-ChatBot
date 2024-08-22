@@ -20,10 +20,20 @@ const Chatbot = () => {
   const [objects, setObjects] = useState<Message[]>([]);
 
   async function createThread() {
-    const res = await fetch("../api/thread-api", { next: { revalidate: 0 }}); // Creating Thread
+    const res = await fetch("../api/thread-api", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }); // Creating Thread
     const id = await res.json();
     setThreadID(id);
-    const result = await fetch(`../api/getMessages-api/${id}`, { next: { revalidate: 0 }}); // getting initial messages
+    const result = await fetch(`../api/getMessages-api/${id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }); // getting initial messages
     const data: any[] = await result.json();
     const messages: Message[] = data.map((message) => ({
       role: message.role,
@@ -35,9 +45,9 @@ const Chatbot = () => {
   }
   useEffect(() => {
     const checkAndCreateThread = async () => {
-        await createThread();
-        console.log("The Thread ID has been set:", threadID);
-        setThreadLoader(false);
+      await createThread();
+      console.log("The Thread ID has been set:", threadID);
+      setThreadLoader(false);
     };
 
     checkAndCreateThread();
@@ -65,7 +75,7 @@ const Chatbot = () => {
       },
       body: JSON.stringify({
         threadID,
-        textMessage
+        textMessage,
       }),
     });
 

@@ -4,7 +4,7 @@ import OpenAI from "openai";
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
-export async function GET(
+export async function POST(
   req: Request,
   { params }: { params: { threadId: string } }
 ) {
