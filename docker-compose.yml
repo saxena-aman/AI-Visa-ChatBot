@@ -7,8 +7,5 @@ services:
       dockerfile: Dockerfile
     ports:
       - '3000:3000'
-    environment:
-      - OPENAI_API_KEY = "sk-svcacct-mazAbhkQlE74tG7dPnBi9WQ2CrSsXaypd_Y0jj2G4jh5tzOLvT3BlbkFJpMJ4CfDiIPoqxfd1ag7m55zj4enVXJ6nisWsXwybYjaSQFCGQA"
-      - ASSISTANT_ID = "asst_v6UfAE9sr4oEFpg3p4HfIl9P"
     env_file:
       - .env
